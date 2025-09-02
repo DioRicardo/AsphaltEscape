@@ -1,0 +1,4 @@
+# W
+
+WIN_WIDTH = 840
+WIN_HEIGHT = 980
