@@ -1,5 +1,8 @@
 # C
 
+CAR_OPTION = ('RED CAR',
+              'YELLOW CAR')
+
 C_WHITE = (255, 255, 255)
 C_YELLOW = (255, 212, 71)
 C_GRAY = (176, 176, 176)

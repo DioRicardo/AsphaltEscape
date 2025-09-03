@@ -4,7 +4,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_YELLOW, C_BLACK, MENU_OPTION, C_WHITE
+from code.Const import WIN_WIDTH, C_YELLOW, C_BLACK, MENU_OPTION, C_WHITE, C_RED
 
 
 class Menu:
@@ -14,8 +14,9 @@ class Menu:
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
+        menu_option = 0
         pygame.mixer_music.load('./asset/Menu.wav')
-        # pygame.mixer_music.set_volume(0.5)
+        pygame.mixer_music.set_volume(0.1)
         pygame.mixer_music.play(-1)
 
         while True:
@@ -24,13 +25,35 @@ class Menu:
             self.menu_text(80, "ASPHALT ESCAPE", C_YELLOW, ((WIN_WIDTH / 2) + 5, 80))
 
             for i in range(len(MENU_OPTION)):
-                self.menu_text(50, MENU_OPTION[i], C_WHITE, (WIN_WIDTH / 2, 550 + 60 * i))
-
+                if i == menu_option:
+                    self.menu_text(50, MENU_OPTION[i], C_RED, (WIN_WIDTH / 2, 550 + 60 * i))
+                else:
+                    self.menu_text(50, MENU_OPTION[i], C_WHITE, (WIN_WIDTH / 2, 550 + 60 * i))
             pygame.display.flip()
-            for event in pygame.event.get():
+
+            for event in pygame.event.get():  # Event getter
+
+                # Quit game implementation
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+
+                # Keyboard Events Implementation
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_DOWN:  # DOWN ARROW
+                        if menu_option < len(MENU_OPTION) - 1:
+                            menu_option += 1
+                        else:
+                            menu_option = 0
+
+                    if event.key == pygame.K_UP:  # UP ARROW
+                        if menu_option > 0:
+                            menu_option -= 1
+                        else:
+                            menu_option = len(MENU_OPTION) - 1
+
+                    if event.key == pygame.K_RETURN:  # ENTER
+                        return MENU_OPTION[menu_option]
 
             pass
 
