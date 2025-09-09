@@ -3,7 +3,7 @@
 import random
 
 from code.Background import Background
-from code.Const import WIN_HEIGHT, ENT_INI_POS, OBSTACLE_LIST, WIN_WIDTH
+from code.Const import WIN_HEIGHT, ENT_INI_POS, OBSTACLE_LIST
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
 
@@ -20,6 +20,5 @@ class EntityFactory:
             case 'PlayerCar':
                 return PlayerCar('PlayerCar', (ENT_INI_POS['PlayerCarX'], ENT_INI_POS['PlayerCarY']))
             case 'Obstacle':
-                return Obstacle('Obstacle1', (WIN_HEIGHT / 2, WIN_WIDTH / 2))
-                # name = random.randint(0, len(OBSTACLE_LIST))
-                # return Obstacle(OBSTACLE_LIST[name], (random.choice((194, 322, 450, 578)), 0))
+                name = random.randint(0, len(OBSTACLE_LIST) - 1)
+                return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0))

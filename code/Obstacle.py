@@ -9,5 +9,5 @@ class Obstacle(Entity):
         super().__init__(name, position)
 
     def move(self):
-        self.rect.centery += ENTITY_SPEED[self.name]
+        self.rect.centery += ENTITY_SPEED['Obstacle']
         pass
