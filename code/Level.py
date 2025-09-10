@@ -1,19 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import pygame.event
+import pygame.display
 from pygame import Surface, Rect
-from pygame.ftfont import Font
+from pygame.font import Font
 
-from code.Const import WIN_HEIGHT, C_BLACK, EVENT_OBSTACLE
+from code.Const import EVENT_OBSTACLE, C_BLACK, WIN_HEIGHT, WIN_WIDTH
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
-
-
-# import pygame.display
-# from pygame import Surface, Rect
-# from pygame.font import Font
-# from pygame import time
 
 
 class Level:
@@ -23,41 +17,46 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('LevelBg'))
         self.entity_list.append(EntityFactory.get_entity('PlayerCar'))
-        pygame.time.set_timer(pygame.USEREVENT + 1, 1000, -1)
+        pygame.time.set_timer(pygame.USEREVENT + 1, 240)
 
     def run(self):
         pygame.mixer_music.load('./asset/Level.wav')
         pygame.mixer_music.set_volume(0.03)
         pygame.mixer_music.play(-1)
-        # clock = pygame.time.Clock()
-        # start_time = pygame.time.get_ticks()
+        clock = pygame.time.Clock()
+        start_time = pygame.time.get_ticks()
 
         while True:
-            # clock.tick(120)
+
+            clock.tick(60)
+
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 # if isinstance(ent, Background):  Implementar aumento da velocidade do background com o tempo sem bater
                 #   ent.move(Speed)
                 ent.move()
 
-            for event in pygame.event.get():  # Event getter
-                print('Entrou no Loop')
+            elapsed_time = pygame.time.get_ticks() - start_time
+
+            self.level_text(20, f'{self.name} - TIME ELAPSED: {elapsed_time / 1000:.1f}s', C_BLACK, (160, 35))
+            self.level_text(20, f'fps: {clock.get_fps():.0f}', C_BLACK, (WIN_WIDTH - 60, 35))
+            self.level_text(20, f'Entidades: {len(self.entity_list)}', C_BLACK, (100, WIN_HEIGHT - 35))
+
+            # pygame.display.flip()
+
+            for event in pygame.event.get():
 
                 # Quit game implementation
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+
                 if event.type == EVENT_OBSTACLE:
                     print('chamando Obstacle')
                     self.entity_list.append(EntityFactory.get_entity('Obstacle'))
 
-            # elapsed_time = pygame.time.get_ticks() - start_time
-
-            # self.level_text(20, f'{self.name} - TIME ELAPSED: {elapsed_time / 1000:.1f}s', C_BLACK, (160, 35))
-            # self.level_text(20, f'fps: {clock.get_fps():.0f}', C_BLACK, (WIN_WIDTH - 60, 35))
-            self.level_text(20, f'Entidades: {len(self.entity_list)}', C_BLACK, (100, WIN_HEIGHT - 35))
-
             pygame.display.flip()
+
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):

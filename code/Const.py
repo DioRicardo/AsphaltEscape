@@ -13,8 +13,8 @@ C_BLACK = (0, 0, 0)
 # E
 
 ENTITY_SPEED = {
-    'LevelBg': 10,
-    'Obstacle': 10,
+    'LevelBg': 5,
+    'Obstacle': 5,
 }
 
 EVENT_OBSTACLE = pygame.USEREVENT + 1
