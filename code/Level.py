@@ -8,6 +8,7 @@ from pygame.font import Font
 from code.Const import C_BLACK, WIN_HEIGHT, WIN_WIDTH, EVENT_OBSTACLE
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -53,6 +54,9 @@ class Level:
                 if event.type == EVENT_OBSTACLE:
                     self.entity_list.append(EntityFactory.get_entity('Obstacle'))
 
+            # Collisions
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):

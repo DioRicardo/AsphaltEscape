@@ -17,6 +17,17 @@ ENTITY_SPEED = {
     'Obstacle': 5,
 }
 
+ENTITY_HEALTH = {
+    'LevelBg': 999,
+    'Obstacle1': 300,
+    'Obstacle2': 300,
+    'Obstacle3': 300,
+    'Obstacle4': 300,
+    'Obstacle5': 300,
+    'PlayerCar': 999,
+    'PoliceCar': 999,
+}
+
 EVENT_OBSTACLE = pygame.USEREVENT + 1
 
 # M
@@ -28,7 +39,6 @@ MENU_OPTION = ('NEW GAME',
 # O
 
 OBSTACLE_LIST = ['Obstacle1', 'Obstacle2', 'Obstacle3', 'Obstacle4', 'Obstacle5']
-
 
 # W
 
