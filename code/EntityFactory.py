@@ -21,4 +21,4 @@ class EntityFactory:
                 return PlayerCar('PlayerCar', (ENT_INI_POS['PlayerCarX'], ENT_INI_POS['PlayerCarY']))
             case 'Obstacle':
                 name = random.randint(0, len(OBSTACLE_LIST) - 1)
-                return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0))
+                return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0 - 300))

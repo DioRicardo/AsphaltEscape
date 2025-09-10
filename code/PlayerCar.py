@@ -11,7 +11,7 @@ class PlayerCar(Entity):
         super().__init__(name, position)
 
     def move(self):
-        for event in pygame.event.get():
+        for event in pygame.event.get(eventtype=pygame.KEYDOWN):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     if self.rect.left >= 322:

@@ -29,6 +29,7 @@ MENU_OPTION = ('NEW GAME',
 
 OBSTACLE_LIST = ['Obstacle1', 'Obstacle2', 'Obstacle3', 'Obstacle4', 'Obstacle5']
 
+
 # W
 
 WIN_WIDTH = 840
