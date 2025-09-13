@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from code.Background import Background
 from code.Const import WIN_HEIGHT
 from code.Entity import Entity
 from code.Obstacle import Obstacle
@@ -29,13 +28,7 @@ class EntityMediator:
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
                     ent1.rect.top <= ent2.rect.bottom):
-                return True
-
-    @staticmethod
-    def __speed_reduction(entity_list: list[Entity]):
-        for i in range(len(entity_list)):
-            if isinstance(entity_list[i], Background) or isinstance(entity_list[i], Obstacle):
-                entity_list[i].speed = 1
+                print('BATEU')
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -44,8 +37,7 @@ class EntityMediator:
             EntityMediator.__verify_collision_window(entity1)
             for j in range(i + 1, len(entity_list)):
                 entity2 = entity_list[j]
-                if EntityMediator.__verify_collision_entity(entity1, entity2):
-                    EntityMediator.__speed_reduction(entity_list)
+                EntityMediator.__verify_collision_entity(entity1, entity2)
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
