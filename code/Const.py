@@ -12,10 +12,7 @@ C_BLACK = (0, 0, 0)
 
 # E
 
-ENTITY_SPEED = {
-    'LevelBg': 5,
-    'Obstacle': 5,
-}
+ENTITY_SPEED = 5
 
 ENTITY_HEALTH = {
     'LevelBg': 999,
@@ -30,6 +27,10 @@ ENTITY_HEALTH = {
 
 EVENT_OBSTACLE = pygame.USEREVENT + 1
 
+# F
+
+FACTOR = 128  # FATOR DE MUDANÇA DE FAIXA DO PLAYER CAR
+
 # M
 
 MENU_OPTION = ('NEW GAME',
@@ -42,7 +43,7 @@ OBSTACLE_LIST = ['Obstacle1', 'Obstacle2', 'Obstacle3', 'Obstacle4', 'Obstacle5'
 
 # s
 
-SPEED_REDUCTION = 60
+SPEED_REDUCTION = 5
 
 # W
 
@@ -56,6 +57,4 @@ ENT_INI_POS = {
     'PlayerCarY': WIN_HEIGHT - 350
 }
 
-# FATOR DE MUDANÇA DE FAIXA DO PLAYER CAR
 
-FACTOR = 128

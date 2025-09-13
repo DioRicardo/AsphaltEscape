@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from code.Const import WIN_HEIGHT
+import random
+
+from code.Const import WIN_HEIGHT, SPEED_REDUCTION, FACTOR, WIN_WIDTH
 from code.Entity import Entity
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
@@ -28,7 +30,8 @@ class EntityMediator:
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
                     ent1.rect.top <= ent2.rect.bottom):
-                print('BATEU')
+                return SPEED_REDUCTION
+            return 0
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -37,10 +40,25 @@ class EntityMediator:
             EntityMediator.__verify_collision_window(entity1)
             for j in range(i + 1, len(entity_list)):
                 entity2 = entity_list[j]
-                EntityMediator.__verify_collision_entity(entity1, entity2)
+                result = EntityMediator.__verify_collision_entity(entity1, entity2)
+                if result:
+                    return result
+        return 0
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
         for ent in entity_list:
             if ent.health <= 0:
                 entity_list.remove(ent)
+
+    @staticmethod
+    def change_lanes(entity_list: list[Entity]):
+        for ent in entity_list:
+            if isinstance(ent, PlayerCar):
+                lane = random.choice(['left', 'right'])
+                if lane == 'left':
+                    if ent.rect.left >= 322:
+                        ent.rect.centerx -= FACTOR
+                elif lane == 'right':
+                    if ent.rect.right <= WIN_WIDTH - 262:
+                        ent.rect.centerx += FACTOR
