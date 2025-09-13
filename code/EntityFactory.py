@@ -3,7 +3,7 @@
 import random
 
 from code.Background import Background
-from code.Const import WIN_HEIGHT, ENT_INI_POS, OBSTACLE_LIST
+from code.Const import WIN_HEIGHT, ENT_INI_POS, OBSTACLE_LIST, ENTITY_SPEED
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
 
@@ -14,11 +14,12 @@ class EntityFactory:
     def get_entity(entity_name: str, position=(0, 0)):
         match entity_name:
             case 'LevelBg':
-                level_bg = [Background(f'LevelBg', (0, 0)),
-                            Background(f'LevelBg', (0, (0 - WIN_HEIGHT)))]
+                level_bg = [Background(f'LevelBg', (0, 0), ENTITY_SPEED['LevelBg']),
+                            Background(f'LevelBg', (0, (0 - WIN_HEIGHT)), ENTITY_SPEED['LevelBg'])]
                 return level_bg
             case 'PlayerCar':
-                return PlayerCar('PlayerCar', (ENT_INI_POS['PlayerCarX'], ENT_INI_POS['PlayerCarY']))
+                return PlayerCar('PlayerCar', (ENT_INI_POS['PlayerCarX'], ENT_INI_POS['PlayerCarY']), 0)
             case 'Obstacle':
                 name = random.randint(0, len(OBSTACLE_LIST) - 1)
-                return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0 - 300))
+                return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0 - 300),
+                                ENTITY_SPEED['Obstacle'])

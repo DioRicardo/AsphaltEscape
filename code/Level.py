@@ -34,8 +34,6 @@ class Level:
 
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
-                # if isinstance(ent, Background):  Implementar aumento da velocidade do background com o tempo sem bater
-                #   ent.move(Speed)
                 ent.move()
 
             elapsed_time = pygame.time.get_ticks() - start_time

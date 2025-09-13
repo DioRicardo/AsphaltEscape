@@ -1,8 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from code.Background import Background
 from code.Const import WIN_HEIGHT
 from code.Entity import Entity
 from code.Obstacle import Obstacle
+from code.PlayerCar import PlayerCar
 
 
 class EntityMediator:
@@ -15,10 +17,35 @@ class EntityMediator:
         pass
 
     @staticmethod
+    def __verify_collision_entity(ent1: Entity, ent2: Entity):
+        valid_interaction = False
+        if isinstance(ent1, Obstacle) and isinstance(ent2, PlayerCar):
+            valid_interaction = True
+        elif isinstance(ent1, PlayerCar) and isinstance(ent2, Obstacle):
+            valid_interaction = True
+
+        if valid_interaction:
+            if (ent1.rect.right >= ent2.rect.left and
+                    ent1.rect.left <= ent2.rect.right and
+                    ent1.rect.bottom >= ent2.rect.top and
+                    ent1.rect.top <= ent2.rect.bottom):
+                return True
+
+    @staticmethod
+    def __speed_reduction(entity_list: list[Entity]):
+        for i in range(len(entity_list)):
+            if isinstance(entity_list[i], Background) or isinstance(entity_list[i], Obstacle):
+                entity_list[i].speed = 1
+
+    @staticmethod
     def verify_collision(entity_list: list[Entity]):
         for i in range(len(entity_list)):
-            test_entity = entity_list[i]
-            EntityMediator.__verify_collision_window(test_entity)
+            entity1 = entity_list[i]
+            EntityMediator.__verify_collision_window(entity1)
+            for j in range(i + 1, len(entity_list)):
+                entity2 = entity_list[j]
+                if EntityMediator.__verify_collision_entity(entity1, entity2):
+                    EntityMediator.__speed_reduction(entity_list)
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
