@@ -76,11 +76,7 @@ class EntityMediator:
         police_car.rect.centerx = player_car.rect.centerx
 
         if game_speed > 5:
-            #police_car.rect.centery = ENT_INI_POS['PoliceCarY'] + 50 + (game_speed * 20)
-            if police_car.rect.top <= WIN_HEIGHT + 10:
-                police_car.rect.centery += 1
+            police_car.closing_in()
         elif game_speed <= 5:
-            if police_car.rect.top > player_car.rect.bottom + 30:
-                police_car.rect.centery -= 3
-            #police_car.rect.centery = ENT_INI_POS['PoliceCarY'] + 50
+            police_car.dropping_back(player_car)
 

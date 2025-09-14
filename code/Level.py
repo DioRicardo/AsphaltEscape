@@ -20,7 +20,6 @@ class Level:
         self.entity_list.extend(EntityFactory.get_entity('LevelBg'))
         self.entity_list.append(EntityFactory.get_entity('PlayerCar'))
         self.entity_list.append(EntityFactory.get_entity('PoliceCar'))
-        pygame.time.set_timer(EVENT_OBSTACLE, 600)
 
         self.baseline_speed = float(ENTITY_SPEED)
         self.game_speed = float(self.baseline_speed)
@@ -40,6 +39,7 @@ class Level:
         while True:
             # player_car = None
             dt = clock.tick(120)
+            print(dt)
 
             if self.collision_cooldown_ms > 0:
                 self.collision_cooldown_ms -= dt
@@ -81,8 +81,6 @@ class Level:
             if collision_result:
                 self.collision_cooldown_ms = 600
                 self.game_speed = 0.5
-                # self.game_speed = -0.6
-                # self.game_speed = 5
                 EntityMediator.change_lanes(entity_list=self.entity_list)
 
             EntityMediator.verify_health(entity_list=self.entity_list)
