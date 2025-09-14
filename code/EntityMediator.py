@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 import random
 
-from code.Const import WIN_HEIGHT, SPEED_REDUCTION, FACTOR, WIN_WIDTH
+from code.Const import WIN_HEIGHT, SPEED_REDUCTION, FACTOR, WIN_WIDTH, ENT_INI_POS
 from code.Entity import Entity
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
+from code.PoliceCar import PoliceCar
 
 
 class EntityMediator:
@@ -62,3 +63,24 @@ class EntityMediator:
                 elif lane == 'right':
                     if ent.rect.right <= WIN_WIDTH - 262:
                         ent.rect.centerx += FACTOR
+
+    @staticmethod
+    def move_police(entity_list: list[Entity], game_speed):
+        player_car = None
+        police_car = None
+        for ent in entity_list:
+            if isinstance(ent, PlayerCar):
+                player_car = ent
+            if isinstance(ent, PoliceCar):
+                police_car = ent
+        police_car.rect.centerx = player_car.rect.centerx
+
+        if game_speed > 5:
+            #police_car.rect.centery = ENT_INI_POS['PoliceCarY'] + 50 + (game_speed * 20)
+            if police_car.rect.top <= WIN_HEIGHT + 10:
+                police_car.rect.centery += 1
+        elif game_speed <= 5:
+            if police_car.rect.top > player_car.rect.bottom + 30:
+                police_car.rect.centery -= 3
+            #police_car.rect.centery = ENT_INI_POS['PoliceCarY'] + 50
+

@@ -10,7 +10,7 @@ class PlayerCar(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
 
-    def move(self, factor=0):
+    def move(self):
         for event in pygame.event.get(eventtype=pygame.KEYDOWN):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:

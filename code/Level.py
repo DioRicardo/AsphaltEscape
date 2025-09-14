@@ -19,14 +19,16 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('LevelBg'))
         self.entity_list.append(EntityFactory.get_entity('PlayerCar'))
+        self.entity_list.append(EntityFactory.get_entity('PoliceCar'))
         pygame.time.set_timer(EVENT_OBSTACLE, 600)
 
         self.baseline_speed = float(ENTITY_SPEED)
         self.game_speed = float(self.baseline_speed)
         self.game_speed_max = float(self.baseline_speed * 2.0)
-        self.speed_accel = 0.5
+        self.speed_accel = 0.6
         self.collision_cooldown_ms = 0
-        pygame.time.set_timer(EVENT_OBSTACLE, 600)
+
+        pygame.time.set_timer(EVENT_OBSTACLE, 700)
 
     def run(self):
         pygame.mixer_music.load('./asset/Level.wav')
@@ -36,7 +38,7 @@ class Level:
         start_time = pygame.time.get_ticks()
 
         while True:
-
+            # player_car = None
             dt = clock.tick(120)
 
             if self.collision_cooldown_ms > 0:
@@ -51,6 +53,8 @@ class Level:
                     ent.speed = self.game_speed
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+
+            EntityMediator.move_police(self.entity_list, self.game_speed)
 
             elapsed_time = pygame.time.get_ticks() - start_time
 
@@ -76,8 +80,8 @@ class Level:
             collision_result = EntityMediator.verify_collision(entity_list=self.entity_list)
             if collision_result:
                 self.collision_cooldown_ms = 600
-                self.game_speed = 0
-                # self.game_speed = -0.5
+                self.game_speed = 0.5
+                # self.game_speed = -0.6
                 # self.game_speed = 5
                 EntityMediator.change_lanes(entity_list=self.entity_list)
 

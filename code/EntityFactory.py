@@ -6,6 +6,7 @@ from code.Background import Background
 from code.Const import WIN_HEIGHT, ENT_INI_POS, OBSTACLE_LIST
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
+from code.PoliceCar import PoliceCar
 
 
 class EntityFactory:
@@ -19,6 +20,8 @@ class EntityFactory:
                 return level_bg
             case 'PlayerCar':
                 return PlayerCar('PlayerCar', (ENT_INI_POS['PlayerCarX'], ENT_INI_POS['PlayerCarY']))
+            case 'PoliceCar':
+                return PoliceCar('PoliceCar', (ENT_INI_POS['PoliceCarX'], ENT_INI_POS['PoliceCarY']))
             case 'Obstacle':
                 name = random.randint(0, len(OBSTACLE_LIST) - 1)
                 return Obstacle(OBSTACLE_LIST[name], (random.choice((180, 308, 436, 564)), 0 - 300))

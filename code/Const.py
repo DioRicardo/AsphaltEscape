@@ -54,7 +54,7 @@ WIN_HEIGHT = 980
 
 ENT_INI_POS = {
     'PlayerCarX': (WIN_WIDTH / 2) + 30,
-    'PlayerCarY': WIN_HEIGHT - 350
+    'PlayerCarY': WIN_HEIGHT - 350,
+    'PoliceCarX': (WIN_WIDTH / 2) + 30,
+    'PoliceCarY': WIN_HEIGHT - 150
 }
-
-
