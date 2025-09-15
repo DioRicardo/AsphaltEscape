@@ -4,7 +4,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_YELLOW, C_BLACK, MENU_OPTION, C_WHITE, C_RED
+from code.Const import WIN_WIDTH, C_YELLOW, C_BLACK, MENU_OPTION, C_WHITE, C_RED, WIN_HEIGHT
 
 
 class Menu:
@@ -23,6 +23,8 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(80, "ASPHALT ESCAPE", C_BLACK, (WIN_WIDTH / 2, 80))
             self.menu_text(80, "ASPHALT ESCAPE", C_YELLOW, ((WIN_WIDTH / 2) + 5, 80))
+            self.menu_text(20, "© Copyright 2025 - Aluno: Dio Ricardo - RU: 4751823", C_BLACK,
+                                ((WIN_WIDTH / 2), WIN_HEIGHT - 80))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -59,6 +61,12 @@ class Menu:
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Stencil", size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(center=text_center_pos)
+        self.window.blit(source=text_surf, dest=text_rect)
+
+    def menu_text_bold(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
+        text_font: Font = pygame.font.SysFont(name="Stencil", size=text_size, bold=pygame.font.Font.bold)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
         self.window.blit(source=text_surf, dest=text_rect)

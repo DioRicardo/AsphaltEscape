@@ -37,9 +37,8 @@ class Level:
         start_time = pygame.time.get_ticks()
 
         while True:
-            # player_car = None
             dt = clock.tick(120)
-            print(dt)
+            elapsed_time = pygame.time.get_ticks() - start_time
 
             if self.collision_cooldown_ms > 0:
                 self.collision_cooldown_ms -= dt
@@ -53,10 +52,12 @@ class Level:
                     ent.speed = self.game_speed
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if ent.name == 'PlayerCar':
+                    ent.score += elapsed_time / 100000
+                    self.level_text(20, f'Score: {ent.score:.0f}pts', C_BLACK,
+                                    (80, 65))
 
             EntityMediator.move_police(self.entity_list, self.game_speed)
-
-            elapsed_time = pygame.time.get_ticks() - start_time
 
             self.level_text(20, f'{self.name} - TIME ELAPSED: {elapsed_time / 1000:.1f}s', C_BLACK, (160, 35))
             self.level_text(20, f'Cooldown Collision: {self.collision_cooldown_ms}', C_BLACK, (WIN_WIDTH - 160, 35))
@@ -79,8 +80,12 @@ class Level:
             # Collisions
             collision_result = EntityMediator.verify_collision(entity_list=self.entity_list)
             if collision_result:
+                game_over = EntityMediator.verify_game_over(self.entity_list, self.game_speed)
+                if game_over:
+                    return
                 self.collision_cooldown_ms = 600
                 self.game_speed = 0.5
+                pygame.event.clear(EVENT_OBSTACLE)
                 EntityMediator.change_lanes(entity_list=self.entity_list)
 
             EntityMediator.verify_health(entity_list=self.entity_list)

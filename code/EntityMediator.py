@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import random
 
-from code.Const import WIN_HEIGHT, SPEED_REDUCTION, FACTOR, WIN_WIDTH, ENT_INI_POS
+from code.Const import WIN_HEIGHT, SPEED_REDUCTION, FACTOR, WIN_WIDTH
 from code.Entity import Entity
 from code.Obstacle import Obstacle
 from code.PlayerCar import PlayerCar
@@ -76,7 +76,15 @@ class EntityMediator:
         police_car.rect.centerx = player_car.rect.centerx
 
         if game_speed > 5:
-            police_car.closing_in()
+            police_car.dropping_back()
         elif game_speed <= 5:
-            police_car.dropping_back(player_car)
+            police_car.closing_in(player_car)
 
+    @staticmethod
+    def verify_game_over(entity_list: list[Entity], game_speed):
+        if game_speed <= 5:
+            for ent in entity_list:
+                if isinstance(ent, PoliceCar):
+                    ent.sound.stop()
+            return True
+        return False

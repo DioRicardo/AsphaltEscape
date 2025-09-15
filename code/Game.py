@@ -22,6 +22,7 @@ class Game:
                 level = Level(self.window, 'Level1')
                 level.run()
             elif menu_return == MENU_OPTION[1]:
+                print('Game Over')
                 # score.show()
                 pass
             elif menu_return == MENU_OPTION[2]:

@@ -15,6 +15,7 @@ class Entity(ABC):
         self.base_speed = ENTITY_SPEED
         self.speed = self.base_speed
         self.health = ENTITY_HEALTH[self.name]
+        self.score = 0
 
     @abstractmethod
     def move(self):
