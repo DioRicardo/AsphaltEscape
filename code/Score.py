@@ -17,7 +17,7 @@ class Score:
 
     def save(self, player_score):
         pygame.mixer_music.load('./asset/Score.wav')
-        pygame.mixer_music.set_volume(1)
+        pygame.mixer_music.set_volume(0.4)
         pygame.mixer_music.play(-1)
         db_proxy = DBProxy('DBScore')
         name = ''

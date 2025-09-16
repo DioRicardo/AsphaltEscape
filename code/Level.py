@@ -32,7 +32,7 @@ class Level:
 
     def run(self):
         pygame.mixer_music.load('./asset/Level.wav')
-        pygame.mixer_music.set_volume(0.03)
+        pygame.mixer_music.set_volume(0.05)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
         start_time = pygame.time.get_ticks()
