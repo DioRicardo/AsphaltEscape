@@ -23,7 +23,7 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(80, "ASPHALT ESCAPE", C_BLACK, (WIN_WIDTH / 2, 80))
             self.menu_text(80, "ASPHALT ESCAPE", C_YELLOW, ((WIN_WIDTH / 2) + 5, 80))
-            self.menu_text(20, "© Copyright 2025 - Aluno: Dio Ricardo - RU: 4751823", C_BLACK,
+            self.menu_text(20, "© Copyright 2025 - Aluno: Dio Ricardo Ferreira Vieira - RU: 4751823", C_BLACK,
                                 ((WIN_WIDTH / 2), WIN_HEIGHT - 80))
 
             for i in range(len(MENU_OPTION)):

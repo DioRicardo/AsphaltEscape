@@ -5,7 +5,7 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_BLACK, WIN_HEIGHT, WIN_WIDTH, EVENT_OBSTACLE, ENTITY_SPEED
+from code.Const import C_BLACK, WIN_HEIGHT, WIN_WIDTH, EVENT_OBSTACLE, ENTITY_SPEED, C_YELLOW
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
@@ -26,6 +26,7 @@ class Level:
         self.game_speed_max = float(self.baseline_speed * 2.0)
         self.speed_accel = 0.6
         self.collision_cooldown_ms = 0
+        self.player_score = 0
 
         pygame.time.set_timer(EVENT_OBSTACLE, 700)
 
@@ -53,8 +54,11 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if ent.name == 'PlayerCar':
-                    ent.score += elapsed_time / 100000
-                    self.level_text(20, f'Score: {ent.score:.0f}pts', C_BLACK,
+                    ent.score += dt / 100
+                    self.player_score: int = int(ent.score)
+                    self.level_text_bold(20, f'Score: {ent.score:.0f}pts', C_BLACK,
+                                         (80, 65))
+                    self.level_text(20, f'Score: {ent.score:.0f}pts', C_YELLOW,
                                     (80, 65))
 
             EntityMediator.move_police(self.entity_list, self.game_speed)
@@ -81,18 +85,25 @@ class Level:
             collision_result = EntityMediator.verify_collision(entity_list=self.entity_list)
             if collision_result:
                 game_over = EntityMediator.verify_game_over(self.entity_list, self.game_speed)
-                if game_over:
-                    return
-                self.collision_cooldown_ms = 600
-                self.game_speed = 0.5
-                pygame.event.clear(EVENT_OBSTACLE)
-                EntityMediator.change_lanes(entity_list=self.entity_list)
+                if not game_over:
+                    self.collision_cooldown_ms = 600
+                    self.game_speed = 0.5
+                    pygame.event.clear(EVENT_OBSTACLE)
+                    EntityMediator.change_lanes(entity_list=self.entity_list)
+                elif game_over:
+                    return self.player_score
 
             EntityMediator.verify_health(entity_list=self.entity_list)
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Stencil", size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(center=text_center_pos)
+        self.window.blit(source=text_surf, dest=text_rect)
+
+    def level_text_bold(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
+        text_font: Font = pygame.font.SysFont(name="Stencil", size=text_size, bold=pygame.font.Font.bold)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
         self.window.blit(source=text_surf, dest=text_rect)

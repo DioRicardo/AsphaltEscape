@@ -82,7 +82,7 @@ class EntityMediator:
 
     @staticmethod
     def verify_game_over(entity_list: list[Entity], game_speed):
-        if game_speed <= 5:
+        if game_speed < 5:
             for ent in entity_list:
                 if isinstance(ent, PoliceCar):
                     ent.sound.stop()

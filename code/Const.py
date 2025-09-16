@@ -58,3 +58,22 @@ ENT_INI_POS = {
     'PoliceCarX': (WIN_WIDTH / 2) + 30,
     'PoliceCarY': WIN_HEIGHT - 150
 }
+
+# S (AFTER W TO USE THE CONSTS)
+
+SCORE_POS = {
+    'Title': (WIN_WIDTH / 2, 250),
+    'EnterName': (WIN_WIDTH / 2, 280),
+    'Label': (WIN_WIDTH / 2, 290),
+    'Name': (WIN_WIDTH / 2, 310),
+    0: (WIN_WIDTH / 2, 330),
+    1: (WIN_WIDTH / 2, 350),
+    2: (WIN_WIDTH / 2, 370),
+    3: (WIN_WIDTH / 2, 390),
+    4: (WIN_WIDTH / 2, 410),
+    5: (WIN_WIDTH / 2, 430),
+    6: (WIN_WIDTH / 2, 450),
+    7: (WIN_WIDTH / 2, 470),
+    8: (WIN_WIDTH / 2, 490),
+    9: (WIN_WIDTH / 2, 510),
+}
