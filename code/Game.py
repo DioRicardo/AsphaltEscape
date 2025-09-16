@@ -25,7 +25,6 @@ class Game:
                 player_score = level.run()
                 if player_score:
                     score.save(player_score)
-                    menu.run()
             elif menu_return == MENU_OPTION[1]:
                 score.show()
             elif menu_return == MENU_OPTION[2]:

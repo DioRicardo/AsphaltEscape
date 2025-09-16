@@ -45,10 +45,9 @@ class Score:
                     if event.key == K_RETURN and len(name) == 4:
                         db_proxy.save({'name': name, 'score': player_score, 'date': get_formatted_date()})
                         self.show()
+                        return
                     elif event.key == K_BACKSPACE:
                         name = name[:-1]
-                    elif event.key == K_ESCAPE:
-                        return
                     else:
                         if len(name) < 4:
                             name += event.unicode
