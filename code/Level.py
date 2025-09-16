@@ -57,16 +57,16 @@ class Level:
                     ent.score += dt / 100
                     self.player_score: int = int(ent.score)
                     self.level_text_bold(20, f'Score: {ent.score:.0f}pts', C_BLACK,
-                                         (80, 65))
+                                         (WIN_WIDTH - 160, 35))
                     self.level_text(20, f'Score: {ent.score:.0f}pts', C_YELLOW,
-                                    (80, 65))
+                                    (WIN_WIDTH - 160, 35))
 
             EntityMediator.move_police(self.entity_list, self.game_speed)
 
-            self.level_text(20, f'{self.name} - TIME ELAPSED: {elapsed_time / 1000:.1f}s', C_BLACK, (160, 35))
-            self.level_text(20, f'Cooldown Collision: {self.collision_cooldown_ms}', C_BLACK, (WIN_WIDTH - 160, 35))
-            self.level_text(20, f'Game Speed: {self.game_speed:.2f}', C_BLACK, (WIN_WIDTH - 160, 75))
-            self.level_text(20, f'Entidades: {len(self.entity_list)}', C_BLACK, (100, WIN_HEIGHT - 35))
+            self.level_text(20, f'{self.name} - ELAPSED TIME: {elapsed_time / 1000:.1f}s', C_BLACK, (160, 35))
+            #self.level_text(20, f'Cooldown Collision: {self.collision_cooldown_ms}', C_BLACK, (WIN_WIDTH - 160, 35))
+            #self.level_text(20, f'Game Speed: {self.game_speed:.2f}', C_BLACK, (WIN_WIDTH - 160, 75))
+            #self.level_text(20, f'Entidades: {len(self.entity_list)}', C_BLACK, (100, WIN_HEIGHT - 35))
 
             pygame.display.flip()
 
