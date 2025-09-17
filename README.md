@@ -1,4 +1,4 @@
-# 🚗 Asphalt Escape
+# <img src="asset/PlayerCar.png" alt="Player Car" width="120"/> Asphalt Escape <img src="asset/PoliceCar.png" alt="Police Car" width="120"/>
 
 Um jogo desenvolvido em **Python + Pygame** como projeto de estudo da disciplina *Linguagem de Programação Aplicada* no curso de Análise e Desenvolvimento de Sistemas (UNINTER).  
 
@@ -11,7 +11,7 @@ Enquanto o tempo passa, a velocidade da pista aumenta, deixando o desafio cada v
 - 🚓 Carro da polícia que persegue o jogador e pode provocar *Game Over* se houver colisão.  
 - 🚧 Geração dinâmica de obstáculos.  
 - ⏱️ Sistema de aceleração de velocidade conforme o tempo.  
-- ⭐ Sistema de pontuação (1 ponto a cada segundo de sobrevivência).  
+- ⭐ Sistema de pontuação (10 pontos a cada segundo de sobrevivência).  
 
 ## 🛠️ Tecnologias
 - [Python 3.12](https://www.python.org/)  
@@ -36,3 +36,32 @@ Enquanto o tempo passa, a velocidade da pista aumenta, deixando o desafio cada v
     pip install -r requirements.txt
     
    python main.py
+
+
+📸 Screenshots
+
+### Menu
+![Menu](screenshots/Menu.png)
+
+### Gameplay
+![Gameplay](screenshots/Gameplay.png)
+
+📚 Aprendizados
+
+Estruturação de um projeto em múltiplos arquivos Python.
+
+Uso de eventos do Pygame (timers, inputs, colisões).
+
+Controle de velocidade e aceleração com base em clock.tick().
+
+Manipulação de listas de entidades em tempo real.
+
+✨ Próximos passos
+
+Melhorar o design gráfico.
+
+Adicionar efeitos sonoros para colisão.
+
+Adicionar efeitos de luzes nos carrinhos.
+
+Etc...
