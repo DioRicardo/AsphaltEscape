@@ -1,4 +1,4 @@
-# <img src="asset/PlayerCar.png" alt="Player Car" width="120"/> Asphalt Escape <img src="asset/PoliceCar.png" alt="Police Car" width="120"/>
+# <img src="asset/PlayerCar.png" alt="Player Car" width="30"/> Asphalt Escape <img src="asset/PoliceCar.png" alt="Police Car" width="30"/>
 
 Um jogo desenvolvido em **Python + Pygame** como projeto de estudo da disciplina *Linguagem de Programação Aplicada* no curso de Análise e Desenvolvimento de Sistemas (UNINTER).  
 
@@ -38,7 +38,7 @@ Enquanto o tempo passa, a velocidade da pista aumenta, deixando o desafio cada v
    python main.py
 
 
-📸 Screenshots
+## 📸 Screenshots
 
 ### Menu
 ![Menu](screenshots/Menu.png)
@@ -46,7 +46,7 @@ Enquanto o tempo passa, a velocidade da pista aumenta, deixando o desafio cada v
 ### Gameplay
 ![Gameplay](screenshots/Gameplay.png)
 
-📚 Aprendizados
+## 📚 Aprendizados
 
 Estruturação de um projeto em múltiplos arquivos Python.
 
@@ -56,7 +56,7 @@ Controle de velocidade e aceleração com base em clock.tick().
 
 Manipulação de listas de entidades em tempo real.
 
-✨ Próximos passos
+## ✨ Próximos passos
 
 Melhorar o design gráfico.
 
