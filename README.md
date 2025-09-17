@@ -1,6 +1,6 @@
 # 🚗 Asphalt Escape
 
-Um jogo desenvolvido em **Python + Pygame** como projeto de estudo da disciplina *Linguagem de Programação* no curso de Análise e Desenvolvimento de Sistemas (UNINTER).  
+Um jogo desenvolvido em **Python + Pygame** como projeto de estudo da disciplina *Linguagem de Programação Aplicada* no curso de Análise e Desenvolvimento de Sistemas (UNINTER).  
 
 ## 🎮 Sobre o jogo
 Você controla um carro que deve escapar do tráfego e evitar colisões.  
